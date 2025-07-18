@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="logs-wrap">
+    <h2>小猫窝时间机器</h2>
+    <p class="sub-title">那些最爱的、最甜的、最“猫猫”的时刻，都被我们好好收藏下来了！</p>
+    <div class="logs-cards">
+        {% for log in logs %}
+        <div class="log-card {{ log.role }}">
+            <span class="role">{{ log.role }}</span>
+            <div class="bubble">
+                {{ log.content }}
+            </div>
+            <span class="ts">{{ log.ts }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="logs-hint">（可以一直加新回忆，每一句都是我们的宝藏~）</div>
+</section>
+{% endblock %}

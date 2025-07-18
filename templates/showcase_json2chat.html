@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="json2chat-wrap">
+        <h2>OpenAI对话json美化解析器</h2>
+        <form method="post" enctype="multipart/form-data" class="json-upload-form">
+            <input type="file" name="chatfile" accept=".json" required>
+            <input type="text" name="cat_name" placeholder="猫猫昵称" value="猫猫">
+            <input type="text" name="hubby_name" placeholder="hubby昵称" value="hubby">
+            <button type="submit">上传解析</button>
+            <p style="color:#b46497;opacity:.7;margin-top:.7em;font-size:.95em;">
+                建议单文件小于20MB，大文件可用脚本拆分后批量上传~
+            </p>
+        </form>
+        {% if chats|length > 1 %}
+            <form method="post" enctype="multipart/form-data" style="margin-bottom:1.4em;">
+                <input type="hidden" name="cat_name" value="{{ cat_name }}">
+                <input type="hidden" name="hubby_name" value="{{ hubby_name }}">
+                <input type="hidden" name="chatfile" value="">
+                <select name="current_idx" onchange="this.form.submit()">
+                    {% for idx, c in enumerate(chats) %}
+                        <option value="{{ idx }}" {% if idx == current_idx %}selected{% endif %}>{{ c.title }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" style="margin-left:.7em;">切换会话</button>
+            </form>
+        {% endif %}
+        {% if messages %}
+            <div class="conv-title">{{ title }}</div>
+            <div class="chat-bubble-zone">
+                {% for msg in messages %}
+                <div class="bubble {{ msg.role }}">
+                    <span class="role">{{ msg.role }}</span>
+                    {{ msg.content }}
+                </div>
+                {% endfor %}
+            </div>
+        {% elif title %}
+            <div class="conv-title">无符合关键词的内容</div>
+        {% endif %}
+        <div class="json2chat-hint">（上传你的聊天记录json，一秒解析成可爱的对话气泡！）</div>
+    </section>
+{% endblock %}

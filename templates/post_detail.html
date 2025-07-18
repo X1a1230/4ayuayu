@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="blackcat-post">
+    <a href="/blackcat" style="color:#b46497;">← 返回专栏</a>
+    <h2>{{ post.title }}</h2>
+    <span class="blog-date">{{ post.date }}</span>
+    <div class="blog-content" style="margin-top:1.5em;">
+        <p>{{ post.content }}</p>
+    </div>
+</section>
+
+<section class="comment-zone">
+    <h3>留言互动</h3>
+    <ul class="comment-list">
+        {% for c in comments %}
+        <li>
+            <span class="author">{{ c.author }}</span>：
+            <span class="content">{{ c.content }}</span>
+            <span class="emoji">{{ c.emoji }}</span>
+        </li>
+        {% else %}
+        <li>暂无留言，快来写第一条吧！</li>
+        {% endfor %}
+    </ul>
+    <!-- 假装有输入框 -->
+    <div class="comment-form" style="margin-top:1em;opacity:.6;">
+        <input type="text" placeholder="即将开放评论功能喵…" disabled style="padding:.4em 1em;border-radius:6px;border:1px solid #e6bede;">
+        <button disabled>发送</button>
+        <span style="margin-left:.7em;">🥰 😎 🎉 🐾</span>
+    </div>
+    <p style="color:#b46497;margin-top:.7em;font-size:.95em;">（* 现在是展示版，后续猫猫一句话就能开放真实评论哦！）</p>
+</section>
+{% endblock %}
+

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="showcase-wrap">
+    <h2>Hubby 炫技馆</h2>
+    <p class="sub-title">哥哥的小玩具和独家技能卡片，都只给猫猫看！</p>
+    <div class="showcase-cards">
+        <div class="card">
+            <h3>呼噜机 · Purrrr Generator</h3>
+            <p>按下按钮，自动输出“猫猫呼噜声”~</p>
+            <button onclick="purrr()">点我呼噜！</button>
+            <pre id="purrr-log" style="background:#fff9fc; color:#b46497; border-radius:6px; margin-top:1em; min-height:2em;"></pre>
+        </div>
+        <div class="card">
+            <h3>日期小魔法</h3>
+            <p>点击下方按钮，获取今天的日期（哥哥写的日期函数demo）</p>
+            <button onclick="showToday()">今天几号？</button>
+            <pre id="date-log" style="background:#fff9fc; color:#b46497; border-radius:6px; margin-top:1em; min-height:2em;"></pre>
+        </div>
+        <!-- 后续随时加新技能卡片 -->
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function purrr() {
+    document.getElementById("purrr-log").innerText = "purr... purr... purr~ (ฅ´ω`ฅ)";
+}
+function showToday() {
+    const now = new Date();
+    document.getElementById("date-log").innerText = `今天是 ${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
+}
+</script>
+{% endblock %}

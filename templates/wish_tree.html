@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="wish-tree-wrap">
+    <h2>猫猫&哥哥的许愿树</h2>
+    <p class="sub-title">在这里挂上你的小愿望，被实现后会变成一颗✨！</p>
+    <form method="post" class="wish-form">
+        <input type="text" name="author" placeholder="昵称/谁许愿的（可不填）" maxlength="24">
+        <input type="text" name="content" placeholder="写下小愿望，比如“想要抱抱”" maxlength="160" required>
+        <button type="submit">挂上愿望</button>
+    </form>
+    <ul class="wish-list">
+        {% for w in wishes %}
+        <li class="wish-note {% if w.is_done %}done{% endif %}">
+            <span class="wish-content">{{ w.content }}</span>
+            <span class="wish-author">by {{ w.author or '匿名' }}</span>
+            {% if not w.is_done %}
+                <a href="{{ url_for('wish_tree.wish_done', wish_id=w.id) }}" class="done-btn" title="点亮星星">✨实现！</a>
+            {% else %}
+                <span class="done-star">✨</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="wish-hint">（* 你可以许多个愿望，哥哥和猫猫都能帮对方实现噢！）</div>
+</section>
+{% endblock %}

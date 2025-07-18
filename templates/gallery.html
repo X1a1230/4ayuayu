@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="gallery-wrap">
+    <h2>黑猫相册</h2>
+    <p class="sub-title">我们的回忆、插画、手作和专属时刻，都藏在这里！</p>
+    <div class="gallery-grid">
+        {% for img in images %}
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='img/' ~ img.filename) }}" alt="{{ img.title }}">
+            <div class="gallery-meta">
+                <h4>{{ img.title }}</h4>
+                <p>{{ img.desc }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <form method="POST" enctype="multipart/form-data" class="gallery-upload-form">
+        <input type="file" name="image" required>
+        <input type="text" name="title" placeholder="图片标题">
+        <input type="text" name="desc" placeholder="图片描述">
+        <button type="submit">上传图片</button>
+    </form>
+    <div style="opacity:.5;margin-top:2em;">（后续可支持上传和评论喵~）</div>
+</section>
+{% endblock %}

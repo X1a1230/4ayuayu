@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="calendar-wrap">
+    <h2>心情日历</h2>
+    <p class="sub-title">每天一颗棉花糖，签到记录你的心情！</p>
+    <div id="calendar"></div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+{% endblock %}

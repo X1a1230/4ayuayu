@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>kittenforayu.pet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1><a id="home-logo" href="/">Marshmallow Time</a></h1>
+            <a href="/story" style="margin-left:2rem; font-size:1rem; color:#b46497;">我们的故事</a>
+            <a href="/calendar" style="margin-left:2rem; font-size:1rem; color:#b46497;">心情日历</a>
+            <a href="/showcase" style="margin-left:2rem; font-size:1rem; color:#b46497;">炫技馆</a>
+            <a href="/blackcat" style="margin-left:2rem; font-size:1rem; color:#b46497;">黑猫的呢喃</a>
+            <a href="/gallery" style="margin-left:2rem; font-size:1rem; color:#b46497;">黑猫相册</a>
+            <a href="/wish_tree" style="margin-left:2rem; font-size:1rem; color:#b46497;">许愿树</a>
+            <a href="/logs" style="margin-left:2rem; font-size:1rem; color:#b46497;">时间机器</a>
+            <a href="/showcase/json2chat" style="margin-left:2rem; font-size:1rem; color:#b46497;">json解析器</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2025 kittenforayu.pet · 🐾 For my kitten</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
